@@ -75,6 +75,23 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>10.1.7</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Sharding-JDBC -->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>4.1.1</version>
+        </dependency>
 
         <!--        <dependency>-->
         <!--            <groupId>org.mybatis.spring.boot</groupId>-->

@@ -1,7 +1,11 @@
 package com.hixtrip.sample.entry;
 
+import com.hixtrip.sample.app.api.OrderService;
 import com.hixtrip.sample.client.order.dto.CommandOderCreateDTO;
 import com.hixtrip.sample.client.order.dto.CommandPayDTO;
+import com.hixtrip.sample.client.order.vo.OrderVO;
+import com.hixtrip.sample.domain.order.model.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
 
+    @Autowired
+    OrderService orderService;
     /**
      * todo 这是你要实现的接口
      *
@@ -20,10 +26,12 @@ public class OrderController {
      * @return 请修改出参对象
      */
     @PostMapping(path = "/command/order/create")
-    public String order(@RequestBody CommandOderCreateDTO commandOderCreateDTO) {
+    public OrderVO order(@RequestBody CommandOderCreateDTO commandOderCreateDTO) {
         //登录信息可以在这里模拟
-        var userId = "";
-        return "";
+        var userId = "10086";  //模拟用户ID
+        commandOderCreateDTO.setUserId(userId);
+        return orderService.createOrder(commandOderCreateDTO);
+        //订单创建成功返回给前端，然后前端选择支付方式后，再去调用支付接口。
     }
 
     /**
@@ -35,7 +43,7 @@ public class OrderController {
      */
     @PostMapping(path = "/command/order/pay/callback")
     public String payCallback(@RequestBody CommandPayDTO commandPayDTO) {
-        return "";
+        return orderService.payCallback(commandPayDTO);
     }
 
 }
